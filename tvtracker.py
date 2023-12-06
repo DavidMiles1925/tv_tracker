@@ -38,10 +38,10 @@ def show_last_turn():
     sleep(0.1)
     if child == " No File Found. ":
         lcd_text(" No File Found. ", LCD_LINE_1)
-    elif child == "BEN":
+    elif child == "AMELIA":
         lcd_text(AMELIA_BUTTON_CONSOLE_OUTPUT_1, LCD_LINE_1)
         lcd_text(AMELIA_BUTTON_CONSOLE_OUTPUT_2, LCD_LINE_2)
-    elif child == "AMELIA":
+    elif child == "BEN":
         lcd_text(BEN_BUTTON_CONSOLE_OUTPUT_1, LCD_LINE_1)
         lcd_text(BEN_BUTTON_CONSOLE_OUTPUT_2, LCD_LINE_2)
     else:
