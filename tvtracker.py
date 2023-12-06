@@ -36,9 +36,20 @@ def show_last_turn():
     #sleep(0.1)
     lcd_init()
     sleep(0.1)
-    lcd_text(f"{child} had the", LCD_LINE_1)
-    if child != " No File Found. ":
-        lcd_text("last turn.", LCD_LINE_2)
+    if child == " No File Found. ":
+        lcd_text(" No File Found. ", LCD_LINE_1)
+    elif child == "BEN":
+        lcd_text(AMELIA_BUTTON_CONSOLE_OUTPUT_1, LCD_LINE_1)
+        lcd_text(AMELIA_BUTTON_CONSOLE_OUTPUT_2, LCD_LINE_2)
+    elif child == "AMELIA":
+        lcd_text(BEN_BUTTON_CONSOLE_OUTPUT_1, LCD_LINE_1)
+        lcd_text(BEN_BUTTON_CONSOLE_OUTPUT_2, LCD_LINE_2)
+    else:
+        lcd_text(" Error: Input   ", LCD_LINE_1)
+        lcd_text(" did not match. ", LCD_LINE_2)
+    # lcd_text(f"{child} had the", LCD_LINE_1)
+    # if child != " No File Found. ":
+    #     lcd_text("last turn.", LCD_LINE_2)
 
 
 if __name__ == "__main__":
