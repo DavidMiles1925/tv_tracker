@@ -13,12 +13,12 @@ def cleanup():
     GPIO.cleanup()
 
 
-def check_button(pin, message1="", message2="", child="NONE"):
+def check_button(pin, message1="", child="NONE"):
+    # Check if child's name should display.
     if GPIO.input(pin) ==  False:
         console_and_log(f"{child} took a turn.")
         log_last_turn(child)
         lcd_text(message1, LCD_LINE_1)
-        lcd_text(message2, LCD_LINE_2)
 
         toggle_led(child)
 
@@ -31,11 +31,11 @@ def check_screen_button(pin):
         show_last_turn()
 
 
-def get_time_string():
+def display_the_time():
     the_time = datetime.now().strftime("%I:%M %p")
     time_string = f"    {the_time}    "
 
-    return time_string
+    lcd_text(time_string, LCD_LINE_2)
 
 
 def show_last_turn():
@@ -71,11 +71,11 @@ if __name__ == "__main__":
         show_last_turn()
 
         while True:
-            time_to_display = get_time_string()
+            display_the_time()
 
-            check_button(AMELIA_BUTTON, AMELIA_BUTTON_CONSOLE_OUTPUT_1, time_to_display, "AMELIA")
+            check_button(AMELIA_BUTTON, AMELIA_BUTTON_CONSOLE_OUTPUT_1, "AMELIA")
 
-            check_button(BEN_BUTTON, BEN_BUTTON_CONSOLE_OUTPUT_1, time_to_display, "BEN")
+            check_button(BEN_BUTTON, BEN_BUTTON_CONSOLE_OUTPUT_1, "BEN")
 
             check_screen_button(SCREEN_BUTTON)
 
