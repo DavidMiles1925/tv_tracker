@@ -23,12 +23,12 @@ LOG_DIRECTORY_PATH = "/home/astro/tv_tracker/logs/"
 ##############################
 
                                #  1234567890123456
-AMELIA_BUTTON_CONSOLE_OUTPUT_1 = "     BEN'S      "
-AMELIA_BUTTON_CONSOLE_OUTPUT_2 = "     turn.      "
+AMELIA_BUTTON_CONSOLE_OUTPUT_1 = "   BEN'S turn.  "
+#Depricated: AMELIA_BUTTON_CONSOLE_OUTPUT_2 = "     turn.      "
 
                             #  1234567890123456
 BEN_BUTTON_CONSOLE_OUTPUT_1 = "    AMELIA'S    "
-BEN_BUTTON_CONSOLE_OUTPUT_2 = "     turn.      "
+#Depricated: BEN_BUTTON_CONSOLE_OUTPUT_2 = "     turn.      "
 
 
 ##############################
