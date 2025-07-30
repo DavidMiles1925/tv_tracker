@@ -1,16 +1,28 @@
 import RPi.GPIO as GPIO
 from logger import console_and_log, log_last_turn, get_last_turn
 from lcd import LCD_LINE_1, LCD_LINE_2, lcd_text, lcd_init
-from pins import AMELIA_BUTTON, BEN_BUTTON, SCREEN_BUTTON, toggle_led, setup_pins, toggle_relay
+from pins import AMELIA_BUTTON, BEN_BUTTON, SCREEN_BUTTON, LED_WARNING, toggle_led, setup_pins, toggle_relay
 from config import AMELIA_BUTTON_CONSOLE_OUTPUT_1, BEN_BUTTON_CONSOLE_OUTPUT_1, REBOOT_ON_EXCEPTION
 from time import sleep
 from datetime import datetime
+from datetime import time as dt_time
 import os
 
+warning_checked_today = False
 
 def cleanup():
     lcd_init()
     GPIO.cleanup()
+
+def check_last_turn_for_warning():
+    child, last_time = get_last_turn()
+    now = datetime.now()
+    hours_since = (now - last_time).total_seconds() / 3600
+
+    if hours_since > 36:
+        GPIO.output(LED_WARNING, GPIO.HIGH)
+    else:
+        GPIO.output(LED_WARNING, GPIO.LOW)
 
 
 def check_button(pin, message1="", child="NONE"):
@@ -72,6 +84,13 @@ if __name__ == "__main__":
 
         while True:
             display_the_time()
+
+            now = datetime.now()
+            if now.time() >= dt_time(19, 0) and not warning_checked_today:
+                check_last_turn_for_warning()
+                warning_checked_today = True
+            elif now.time() < dt_time(19, 0):
+                warning_checked_today = False
 
             check_button(AMELIA_BUTTON, AMELIA_BUTTON_CONSOLE_OUTPUT_1, "AMELIA")
 

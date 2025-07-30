@@ -21,6 +21,8 @@ SCREEN_BUTTON = 6
 LED_BLUE = 22
 LED_PINK = 27
 
+LED_WARNING = 17
+
 
 def pin_out(pin, status=True):
     if status:
@@ -72,7 +74,7 @@ def setup_button_pins():
 
 
 def setup_led_pins():
-    led_array = [LED_BLUE, LED_PINK]
+    led_array = [LED_BLUE, LED_PINK, LED_WARNING]
 
     for item in led_array:
         GPIO.setup(item, GPIO.OUT)

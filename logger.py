@@ -1,50 +1,36 @@
 from datetime import datetime
 import os
-
 from config import CONSOLE_OUTPUT_ON, LOGGING_ENABLED, LOG_DIRECTORY_PATH
+
 
 def write_to_log(message):
     datestamp = datetime.now().strftime("%m-%y")
     timestamp = datetime.now().strftime("%m/%d/%y [%H:%M:%S]")
-
     fname = f"log-{datestamp}.txt"
+    path_str = LOG_DIRECTORY_PATH
 
-    path_str = f"{LOG_DIRECTORY_PATH}"
-
-    if os.path.exists(path_str) == False:
+    if not os.path.exists(path_str):
         os.mkdir(path_str)
 
     os.chdir(path_str)
-    if os.path.exists(fname):
-        fout = open(fname, 'a')
-        fout.write(f"{timestamp}:    ")
-        fout.write(f"{message}\n\n")
-    else:
-        fout = open(fname, 'w')
-        fout.write(f"{timestamp}:    ")
-        fout.write(f"{message}\n\n")
+    with open(fname, 'a' if os.path.exists(fname) else 'w') as fout:
+        fout.write(f"{timestamp}:    {message}\n\n")
+
 
 def console_and_log(message=""):
     if CONSOLE_OUTPUT_ON:
         print(message)
-
     if LOGGING_ENABLED:
         write_to_log(message)
 
-def log_last_turn(message):
-    fname = "lastturn.txt"
-    fout = open(fname, 'w')
-    fout.write(message)
-    fout.close()
+
+def log_last_turn(child):
+    timestamp = datetime.now().isoformat()
+    with open("lastturn.txt", "w") as f:
+        f.write(f"{child},{timestamp}")
 
 
 def get_last_turn():
-    fname = "lastturn.txt"
-    if os.path.exists(fname):
-        fout = open(fname, 'r')
-        child = fout.readline()
-    
-    else:
-        child = " No File Found. "
-
-    return child
+    with open("lastturn.txt", "r") as f:
+        child, timestamp = f.read().strip().split(",", 1)
+        return child, datetime.fromisoformat(timestamp)
