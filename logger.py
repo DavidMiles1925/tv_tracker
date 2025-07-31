@@ -47,7 +47,6 @@ def get_last_turn():
 
         child, timestamp = line.split(",", 1)
         child = child.strip()
-        print(child == "BEN" or "AMELIA")
         if child == "BEN" or "AMELIA":
             return child, datetime.fromisoformat(timestamp.strip())
 

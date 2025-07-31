@@ -59,7 +59,6 @@ def show_last_turn():
     #sleep(0.1)
     lcd_init()
     sleep(0.1)
-    print(f"CHILD EVALUATE: {child}")
     if child == "NO_FILE":
         lcd_text(" No File Found. ", LCD_LINE_1)
     elif child == "AMELIA":

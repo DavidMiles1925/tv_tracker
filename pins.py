@@ -63,7 +63,6 @@ def toggle_relay():
 
     screen_is_on = not screen_is_on
     sleep(0.2)
-    print("relay toggled")
 
 
 def setup_button_pins():
@@ -85,6 +84,7 @@ def setup_led_pins():
 def setup_pins():
     setmode()
     setup_lcd_pins()
+    sleep(0.1)
     setup_relay_pins()
     setup_button_pins()
     setup_led_pins()
