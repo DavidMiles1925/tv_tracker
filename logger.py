@@ -38,15 +38,7 @@ def get_last_turn():
         return "NO_FILE", None
 
     with open("lastturn.txt", "r") as f:
-        lines = f.readlines()
-
-    for line in reversed(lines):
-        line = line.strip()
-        if not line:
-            continue
-
-        child, timestamp = line.split(",", 1)
-        child = child.strip()
+        child, timestamp = f.read().strip().split(",", 1)
         if child == "BEN" or "AMELIA":
             return child, datetime.fromisoformat(timestamp.strip())
 
