@@ -63,6 +63,7 @@ def toggle_relay():
 
     screen_is_on = not screen_is_on
     sleep(0.2)
+    print("relay toggled")
 
 
 def setup_button_pins():
