@@ -47,11 +47,10 @@ def get_last_turn():
 
         child, timestamp = line.split(",", 1)
         child = child.strip()
+        print(child)
         if child == "BEN" or "AMELIA":
             return child, datetime.fromisoformat(timestamp.strip())
-        else:
-            continue
-        
+
     return "READ_ERROR"
             
 
