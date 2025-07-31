@@ -31,6 +31,10 @@ def log_last_turn(child):
 
 
 def get_last_turn():
+    if not os.path.exists("lastturn.txt"):
+        return None, None  # or return some default values
+
     with open("lastturn.txt", "r") as f:
         child, timestamp = f.read().strip().split(",", 1)
         return child, datetime.fromisoformat(timestamp)
+
