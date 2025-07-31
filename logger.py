@@ -44,13 +44,14 @@ def get_last_turn():
         line = line.strip()
         if not line:
             continue
-        try:
-            child, timestamp = line.split(",", 1)
-            child = child.strip()
-            if child in ("BEN", "AMELIA"):
-                return child, datetime.fromisoformat(timestamp.strip())
-        except ValueError:
-            continue  # Line not in expected format; skip it
 
-    return "READ_ERROR", None
+        child, timestamp = line.split(",", 1)
+        child = child.strip()
+        if child == "BEN" or "AMELIA":
+            return child, datetime.fromisoformat(timestamp.strip())
+        else:
+            continue
+        
+    return "READ_ERROR"
+            
 
