@@ -4,12 +4,12 @@ from time import sleep
 from lcd import lcd_init
 
 
-LCD_RS = 7   # Pi pin 26
-LCD_E  = 8   # Pi pin 24
-LCD_D4 = 25  # Pi pin 22
-LCD_D5 = 24  # Pi pin 18
-LCD_D6 = 23  # Pi pin 16
-LCD_D7 = 18  # Pi pin 12
+LCD_RS = 7 
+LCD_E  = 8 
+LCD_D4 = 25
+LCD_D5 = 24
+LCD_D6 = 23
+LCD_D7 = 18
 
 CONTROL_PIN = 17
 screen_is_on = SCREEN_ON_BY_DEFAULT
