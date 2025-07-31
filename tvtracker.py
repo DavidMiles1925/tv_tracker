@@ -77,7 +77,10 @@ if __name__ == "__main__":
         lcd_init()
 
         console_and_log("Program Started")
-        console_and_log(f"{get_last_turn()} had the last turn.")
+
+        child, last_time = get_last_turn()
+        
+        console_and_log(f"{child} had the last turn.")
 
         # lcd_text("Program Started", LCD_LINE_1)
         show_last_turn()
