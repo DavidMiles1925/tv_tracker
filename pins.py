@@ -84,8 +84,9 @@ def setup_led_pins():
 
 def setup_pins():
     setmode()
-    setup_lcd_pins()
     setup_relay_pins()
+    sleep(0.1)
+    setup_lcd_pins()
     setup_button_pins()
     setup_led_pins()
 
