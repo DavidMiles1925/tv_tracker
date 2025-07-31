@@ -46,3 +46,18 @@ AMELIA_BUTTON_CONSOLE_OUTPUT_1 = "   BEN'S turn.  "
 BEN_BUTTON_CONSOLE_OUTPUT_1 = " AMELIA'S turn. "
 
 
+##############################
+##############################
+#####                    #####
+#####     PULL FILES     #####
+#####                    #####
+##############################
+##############################
+
+REMOTE_HOST = "192.168.1.177"
+PI_USERNAME = "squirtle"
+WIN_USERNAME = "David"
+
+REMOTE_PATH_PHOTO = None
+REMOTE_PATH_VIDEO = f"/home/{PI_USERNAME}/tv_tracker/logs/"
+LOCAL_PATH = f"C:/Users/{WIN_USERNAME}/Downloads"

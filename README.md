@@ -59,13 +59,14 @@ python3 tvtracker.py
 
 ### 📁 File Structure
 
-| File           | Purpose                                           |
-| -------------- | ------------------------------------------------- |
-| `tvtracker.py` | Main program logic and loop                       |
-| `logger.py`    | Handles turn logging and console output           |
-| `pins.py`      | GPIO setup and control for buttons, LEDs, and LCD |
-| `lcd.py`       | Low-level control for a 16x2 HD44780 LCD          |
-| `config.py`    | Global constants and settings                     |
+| File            | Purpose                                           |
+| --------------- | ------------------------------------------------- |
+| `tvtracker.py`  | Main program logic and loop                       |
+| `logger.py`     | Handles turn logging and console output           |
+| `pins.py`       | GPIO setup and control for buttons, LEDs, and LCD |
+| `lcd.py`        | Low-level control for a 16x2 HD44780 LCD          |
+| `config.py`     | Global constants and settings                     |
+| `pull_files.py` | Utility for Windows computer to pull in log files |
 
 ### 📌 Important Concepts
 
@@ -80,17 +81,30 @@ python3 tvtracker.py
 sudo nano config.py
 ```
 
-| Option                           | Possible Values     |   Default Value    | Description                                                                   |
-| :------------------------------- | :------------------ | :----------------: | :---------------------------------------------------------------------------- |
-| `HOURS_UNTIL_WARNING`            | Any Number          |         36         | The number of hours after a button being pressed before warning light is lit. |
-| `SCREEN_ON_BY_DEFAULT`           | True/False          |        True        | Determines whether the screen turns on at system startup.                     |
-| `LEDS_ON`                        | True/False          |        True        | This can be used to disable the turn LEDs by setting to `False`               |
-| `REBOOT_ON_EXCEPTION`            | True/False          |       False        | Restart if the program encounters an error (NOT RECOMMENDED)                  |
-| `CONSOLE_OUTPUT_ON`              | True/False          |        True        | Print statements to the console? (Used for debugging)                         |
-| `LOGGING_ENABLED`                | True/False          |        True        | Print activity to logs?                                                       |
-| `LOG_DIRECTORY_PATH`             | True/False          |        True        | This is the folder where logs will be stored.                                 |
-| `AMELIA_BUTTON_CONSOLE_OUTPUT_1` | 16 Character String |   " BEN'S turn."   | Output for **_Ben's_** Turn (16 Characters including spacesfor LCD screen)    |
-| `BEN_BUTTON_CONSOLE_OUTPUT_1`    | 16 Character String | " AMELIA'S turn. " | Output for **_Amelia's_** Turn (16 Characters including spacesfor LCD screen) |
+> | Option                           | Possible Values     |   Default Value    | Description                                                                   |
+> | :------------------------------- | :------------------ | :----------------: | :---------------------------------------------------------------------------- |
+> | `HOURS_UNTIL_WARNING`            | Any Number          |         36         | The number of hours after a button being pressed before warning light is lit. |
+> | `SCREEN_ON_BY_DEFAULT`           | True/False          |        True        | Determines whether the screen turns on at system startup.                     |
+> | `LEDS_ON`                        | True/False          |        True        | This can be used to disable the turn LEDs by setting to `False`               |
+> | `REBOOT_ON_EXCEPTION`            | True/False          |       False        | Restart if the program encounters an error (NOT RECOMMENDED)                  |
+> | `CONSOLE_OUTPUT_ON`              | True/False          |        True        | Print statements to the console? (Used for debugging)                         |
+> | `LOGGING_ENABLED`                | True/False          |        True        | Print activity to logs?                                                       |
+> | `LOG_DIRECTORY_PATH`             | True/False          |        True        | This is the folder where logs will be stored.                                 |
+> | `AMELIA_BUTTON_CONSOLE_OUTPUT_1` | 16 Character String |   " BEN'S turn."   | Output for **_Ben's_** Turn (16 Characters including spacesfor LCD screen)    |
+> | `BEN_BUTTON_CONSOLE_OUTPUT_1`    | 16 Character String | " AMELIA'S turn. " | Output for **_Amelia's_** Turn (16 Characters including spacesfor LCD screen) |
+
+### Configuring pull_files.py
+
+NOTE: This utility was brought over from another repo and re-purposed for the log files
+
+> | Option              | Possible Values  | Purpose                                                   |
+> | :------------------ | :--------------- | :-------------------------------------------------------- |
+> | `REMOTE_HOST`       | RPi IP Address   | The IP address of the RPi for ssh connection              |
+> | `PI_USERNAME`       | RPi Username     | The username of the RPi                                   |
+> | `WIN_USERNAME`      | Windows Username | The username of the Windows account pulling files         |
+> | `REMOTE_PATH_PHOTO` | Do Not Use       | A variable not used since this file was re-purposed       |
+> | `REMOTE_PATH_VIDEO` | File Path        | Path to grab **_log_** files from                         |
+> | `LOCAL_PATH`        | File path        | Path on windoes machine where files will be downloaded to |
 
 ### Example Behavior
 
@@ -107,21 +121,21 @@ BEN'S turn.
 
 ### GPIO Information
 
-| Pin Name      | BCM Number | Physical Pin | Description                   |
-| :------------ | :--------- | :----------- | :---------------------------- |
-| LCD_RS        | 7          | 26           | LCD Register Select           |
-| LCD_E         | 8          | 24           | LCD Enable                    |
-| LCD_D4        | 25         | 22           | LCD Data Bit 4                |
-| LCD_D5        | 24         | 18           | LCD Data Bit 5                |
-| LCD_D6        | 23         | 16           | LCD Data Bit 6                |
-| LCD_D7        | 18         | 12           | LCD Data Bit 7                |
-| CONTROL_PIN   | 17         | 11           | Turn Screen on/off            |
-| AMELIA_BUTTON | 26         | 37           | Amelia’s button input         |
-| BEN_BUTTON    | 13         | 33           | Ben’s button input            |
-| SCREEN_BUTTON | 6          | 31           | Extra screen/button input     |
-| LED_BLUE      | 22         | 15           | Blue LED output               |
-| LED_PINK      | 27         | 13           | Pink LED output               |
-| LED_WARNING   | 12         | 11           | Warning LED (same as control) |
+> | Pin Name      | BCM Number | Physical Pin | Description                   |
+> | :------------ | :--------- | :----------- | :---------------------------- |
+> | LCD_RS        | 7          | 26           | LCD Register Select           |
+> | LCD_E         | 8          | 24           | LCD Enable                    |
+> | LCD_D4        | 25         | 22           | LCD Data Bit 4                |
+> | LCD_D5        | 24         | 18           | LCD Data Bit 5                |
+> | LCD_D6        | 23         | 16           | LCD Data Bit 6                |
+> | LCD_D7        | 18         | 12           | LCD Data Bit 7                |
+> | CONTROL_PIN   | 17         | 11           | Turn Screen on/off            |
+> | AMELIA_BUTTON | 26         | 37           | Amelia’s button input         |
+> | BEN_BUTTON    | 13         | 33           | Ben’s button input            |
+> | SCREEN_BUTTON | 6          | 31           | Extra screen/button input     |
+> | LED_BLUE      | 22         | 15           | Blue LED output               |
+> | LED_PINK      | 27         | 13           | Pink LED output               |
+> | LED_WARNING   | 12         | 11           | Warning LED (same as control) |
 
 ### Wiring Diagram
 
