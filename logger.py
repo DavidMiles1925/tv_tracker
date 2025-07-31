@@ -2,6 +2,8 @@ from datetime import datetime
 import os
 from config import CONSOLE_OUTPUT_ON, LOGGING_ENABLED, LOG_DIRECTORY_PATH
 
+class LogException(Exception):
+    pass
 
 def write_to_log(message):
     datestamp = datetime.now().strftime("%m-%y")
@@ -34,14 +36,18 @@ import os
 from datetime import datetime
 
 def get_last_turn():
+    timestamp
+
     if not os.path.exists("lastturn.txt"):
         return "NO_FILE", None
+    try:
+        with open("lastturn.txt", "r") as f:
+            child, timestamp = f.read().strip().split(",", 1)
+            if child == "BEN" or "AMELIA":
+                return child, datetime.fromisoformat(timestamp.strip())
+    except:
+        raise LogException
 
-    with open("lastturn.txt", "r") as f:
-        child, timestamp = f.read().strip().split(",", 1)
-        if child == "BEN" or "AMELIA":
-            return child, datetime.fromisoformat(timestamp.strip())
-
-    return "READ_ERROR"
+    return "READ_ERROR", None
             
 
