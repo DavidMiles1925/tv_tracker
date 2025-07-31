@@ -21,7 +21,7 @@ SCREEN_BUTTON = 6
 LED_BLUE = 22
 LED_PINK = 27
 
-LED_WARNING = 17
+LED_WARNING = 12
 
 
 def pin_out(pin, status=True):
