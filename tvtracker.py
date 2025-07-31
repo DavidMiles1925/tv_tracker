@@ -77,6 +77,8 @@ if __name__ == "__main__":
 
         lcd_init()
 
+        sleep(0.1)
+
         console_and_log("Program Started")
 
         child, last_time = get_last_turn()
