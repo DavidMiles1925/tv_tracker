@@ -54,7 +54,7 @@ def display_the_time():
 
 
 def show_last_turn():
-    child = get_last_turn()
+    child, last_time = get_last_turn()
     toggle_led(child)
     #sleep(0.1)
     lcd_init()
