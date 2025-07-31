@@ -30,11 +30,27 @@ def log_last_turn(child):
         f.write(f"{child},{timestamp}")
 
 
+import os
+from datetime import datetime
+
 def get_last_turn():
     if not os.path.exists("lastturn.txt"):
-        return None, None  # or return some default values
+        return "NO_FILE", None
 
     with open("lastturn.txt", "r") as f:
-        child, timestamp = f.read().strip().split(",", 1)
-        return child, datetime.fromisoformat(timestamp)
+        lines = f.readlines()
+
+    for line in reversed(lines):
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            child, timestamp = line.split(",", 1)
+            child = child.strip()
+            if child in ("BEN", "AMELIA"):
+                return child, datetime.fromisoformat(timestamp.strip())
+        except ValueError:
+            continue  # Line not in expected format; skip it
+
+    return "READ_ERROR", None
 
