@@ -90,7 +90,7 @@ sudo nano config.py
 | `LOGGING_ENABLED`                | True/False          |        True        | Print activity to logs?                                                       |
 | `LOG_DIRECTORY_PATH`             | True/False          |        True        | This is the folder where logs will be stored.                                 |
 | `AMELIA_BUTTON_CONSOLE_OUTPUT_1` | 16 Character String |   " BEN'S turn."   | Output for **_Ben's_** Turn (16 Characters including spacesfor LCD screen)    |
-| `BEN_BUTTON_CONSOLE_OUTPUT_1`    | 16 Character String | " AMELIA'S turn. " | Output for **_Ben's_** Turn (16 Characters including spacesfor LCD screen)    |
+| `BEN_BUTTON_CONSOLE_OUTPUT_1`    | 16 Character String | " AMELIA'S turn. " | Output for **_Amelia's_** Turn (16 Characters including spacesfor LCD screen) |
 
 ### Example Behavior
 
