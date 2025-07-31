@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from logger import console_and_log, log_last_turn, get_last_turn
 from lcd import LCD_LINE_1, LCD_LINE_2, lcd_text, lcd_init
 from pins import AMELIA_BUTTON, BEN_BUTTON, SCREEN_BUTTON, LED_WARNING, toggle_led, setup_pins, toggle_relay
-from config import AMELIA_BUTTON_CONSOLE_OUTPUT_1, BEN_BUTTON_CONSOLE_OUTPUT_1, REBOOT_ON_EXCEPTION
+from config import AMELIA_BUTTON_CONSOLE_OUTPUT_1, BEN_BUTTON_CONSOLE_OUTPUT_1, REBOOT_ON_EXCEPTION, HOURS_UNTIL_WARNING
 from time import sleep
 from datetime import datetime
 from datetime import time as dt_time
@@ -19,7 +19,7 @@ def check_last_turn_for_warning():
     now = datetime.now()
     hours_since = (now - last_time).total_seconds() / 3600
 
-    if hours_since > 36:
+    if hours_since > HOURS_UNTIL_WARNING:
         GPIO.output(LED_WARNING, GPIO.HIGH)
     else:
         GPIO.output(LED_WARNING, GPIO.LOW)

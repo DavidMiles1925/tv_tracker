@@ -38,18 +38,19 @@ This program runs on a Raspberry Pi and is designed to help children take turns 
 - Displays the current time on the second line.
 - Automatically updates every second.
 
-### Running the program
+### 🔧 Setup
 
-The main file is called `tvtracker.py`.
+1. Ensure your Pi has Python 3 and `RPi.GPIO` installed.
+2. Wire up the following components:
+   - Two buttons (for two users)
+   - Screen toggle button
+   - LCD (16x2) via 4-bit mode
+   - Three LEDs: two user indicators + one warning LED
+3. Place all scripts in the same directory and set `LOG_DIRECTORY_PATH` appropriately in `config.py`.
+4. Run the script using:
 
 ```bash
-python tvtracker.py
-```
-
-### Setting up the Config File
-
-```bash
-sudo nano config.py
+python3 tvtracker.py
 ```
 
 ---
@@ -73,19 +74,23 @@ sudo nano config.py
 - **Scheduled Check**: Every day at 7 PM, the system evaluates the time since the last turn and triggers the warning LED if needed.
 - **Fail-safe**: The program handles exceptions and cleans up GPIO on shutdown. It can optionally reboot the Pi if an unrecoverable error occurs (`REBOOT_ON_EXCEPTION` in config).
 
-### 🔧 Setup
+### Setting up the Config File
 
-1. Ensure your Pi has Python 3 and `RPi.GPIO` installed.
-2. Wire up the following components:
-   - Two buttons (for two users)
-   - Screen toggle button
-   - LCD (16x2) via 4-bit mode
-   - Three LEDs: two user indicators + one warning LED
-3. Place all scripts in the same directory and set `LOG_DIRECTORY_PATH` appropriately in `config.py`.
-4. Run the script using:
-   ```bash
-   python3 tvtracker.py
-   ```
+```bash
+sudo nano config.py
+```
+
+| Option                           | Possible Values     |   Default Value    | Description                                                                   |
+| :------------------------------- | :------------------ | :----------------: | :---------------------------------------------------------------------------- |
+| `HOURS_UNTIL_WARNING`            | Any Number          |         36         | The number of hours after a button being pressed before warning light is lit. |
+| `SCREEN_ON_BY_DEFAULT`           | True/False          |        True        | Determines whether the screen turns on at system startup.                     |
+| `LEDS_ON`                        | True/False          |        True        | This can be used to disable the turn LEDs by setting to `False`               |
+| `REBOOT_ON_EXCEPTION`            | True/False          |       False        | Restart if the program encounters an error (NOT RECOMMENDED)                  |
+| `CONSOLE_OUTPUT_ON`              | True/False          |        True        | Print statements to the console? (Used for debugging)                         |
+| `LOGGING_ENABLED`                | True/False          |        True        | Print activity to logs?                                                       |
+| `LOG_DIRECTORY_PATH`             | True/False          |        True        | This is the folder where logs will be stored.                                 |
+| `AMELIA_BUTTON_CONSOLE_OUTPUT_1` | 16 Character String |   " BEN'S turn."   | Output for **_Ben's_** Turn (16 Characters including spacesfor LCD screen)    |
+| `BEN_BUTTON_CONSOLE_OUTPUT_1`    | 16 Character String | " AMELIA'S turn. " | Output for **_Ben's_** Turn (16 Characters including spacesfor LCD screen)    |
 
 ### Example Behavior
 
