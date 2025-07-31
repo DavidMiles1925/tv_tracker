@@ -46,7 +46,7 @@ def get_last_turn():
             if child == "BEN" or "AMELIA":
                 return child, datetime.fromisoformat(timestamp.strip())
     except:
-        return "READ_ERROR", None
+        pass
 
     return "READ_ERROR", None
             
