@@ -115,13 +115,13 @@ BEN'S turn.
 | LCD_D5        | 24         | 18           | LCD Data Bit 5                |
 | LCD_D6        | 23         | 16           | LCD Data Bit 6                |
 | LCD_D7        | 18         | 12           | LCD Data Bit 7                |
-| CONTROL_PIN   | 17         | 11           | Shared control / warning LED  |
+| CONTROL_PIN   | 17         | 11           | Turn Screen on/off            |
 | AMELIA_BUTTON | 26         | 37           | Amelia’s button input         |
 | BEN_BUTTON    | 13         | 33           | Ben’s button input            |
 | SCREEN_BUTTON | 6          | 31           | Extra screen/button input     |
 | LED_BLUE      | 22         | 15           | Blue LED output               |
 | LED_PINK      | 27         | 13           | Pink LED output               |
-| LED_WARNING   | 17         | 11           | Warning LED (same as control) |
+| LED_WARNING   | 12         | 11           | Warning LED (same as control) |
 
 ### Wiring Diagram
 
