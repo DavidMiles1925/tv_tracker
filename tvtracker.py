@@ -66,7 +66,7 @@ def show_last_turn():
     elif child == "BEN":
         lcd_text(BEN_BUTTON_CONSOLE_OUTPUT_1, LCD_LINE_1)
     else:
-        lcd_text("FILE READ ERROR ", LCD_LINE_1)
+        lcd_text("  CORRUPT FILE  ", LCD_LINE_1)
         console_and_log("There was a problem reading the file. It exists, but it can't find a name.")
 
 
