@@ -17,7 +17,10 @@ def cleanup():
 def check_last_turn_for_warning():
     child, last_time = get_last_turn()
     now = datetime.now()
-    hours_since = (now - last_time).total_seconds() / 3600
+    if last_time is not None:
+        hours_since = (now - last_time).total_seconds() / 3600
+    else:
+        hours_since = 0
 
     if hours_since > HOURS_UNTIL_WARNING:
         GPIO.output(LED_WARNING, GPIO.HIGH)
