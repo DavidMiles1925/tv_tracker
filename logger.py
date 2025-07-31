@@ -36,7 +36,7 @@ import os
 from datetime import datetime
 
 def get_last_turn():
-    timestamp
+    timestamp = ""
 
     if not os.path.exists("lastturn.txt"):
         return "NO_FILE", None
